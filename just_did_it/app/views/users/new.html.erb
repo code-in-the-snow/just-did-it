@@ -1,0 +1,12 @@
+<% provide(:title, 'Sign up') %>
+<h3>Sign up</h3>
+
+<%= form_for :user do |f| %>
+  <p>First name: <%= f.text_field :first_name %></p>
+  <p>Last name: <%= f.text_field :last_name %></p>
+  <p>Handle: <%= f.text_field :handle %></p>
+  <p>Email: <%= f.email_field :email %></p>
+  <p>Password: <%= f.password_field :password_digest %></p>
+  <p>Password confirmation: <%= f.text_field :password_digest %></p>
+  <p id="new_user"><%= f.submit "Create account" %></p>
+<% end %>
