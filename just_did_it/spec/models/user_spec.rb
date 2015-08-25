@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     end
 
     it "is a valid user object" do
-      expect(user.valid?).to eq(false)
+      expect(user.valid?).to eq(true)
     end
   end
 
@@ -24,7 +24,8 @@ RSpec.describe User, type: :model do
       bad = User.new(last_name: 'Clark',
                      handle: 'clarky',
                      email: 'clark@test.com',
-                     password_digest: 'abcdef')
+                     password: 'abcdef',
+                     password_confirmation: 'abcdef')
      expect(bad.valid?).to eq(false)
    end
    it "does not save a bad email address" do
@@ -32,7 +33,17 @@ RSpec.describe User, type: :model do
                     last_name: 'Clark',
                     handle: 'clarky',
                     email: 'clarkytest.com',
-                    password_digest: 'abcdef')
+                    password: 'abcdef',
+                    password_confirmation: 'abcdef')
+    expect(bad.valid?).to eq(false)
+  end
+  it "does not save a short handle" do
+    bad = User.new(first_name: 'Dot',
+                   last_name: 'Clark',
+                   handle: 'car',
+                   email: 'clark@test.com',
+                   password: 'abcdef',
+                   password_confirmation: 'abcdef')
     expect(bad.valid?).to eq(false)
   end
  end
